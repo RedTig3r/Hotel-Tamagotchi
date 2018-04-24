@@ -1,0 +1,160 @@
+﻿@model IEnumerable<HotelTamagotchi.Models.ViewModel.TamagotchiVM>
+@Styles.Render("~/Content/Site.css")
+
+@{
+    bool ShowId = true;
+}
+
+<div class="row">
+    <div class="box">
+        <h2>Tamagotchi</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <div class="box">
+        <table class="table">
+            <thead>
+                <tr>
+                    @if (ShowId == true)
+                    {
+                        <th>
+                            @Html.DisplayNameFor(model => model.TamagotchiId)
+                        </th>
+                    }
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IsALive)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Money)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Level)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Health)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Boredom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HotelRoomName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlayerUserName)
+                    </th>
+                    <th>
+                        CRUD
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="table_Tamagotchi_ALive">
+
+                @foreach (var item in Model)
+                {
+                    if (item.IsALive)
+                    {
+
+                        <tr>
+                            @if (ShowId == true)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TamagotchiId)
+                                </td>
+                            }
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsALive)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Money)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Level)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Health)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Boredom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HotelRoomName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerUserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.TamagotchiId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.TamagotchiId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TamagotchiId })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tbody class="table_Tamagotchi_NotALive">
+                @foreach (var item in Model)
+                {
+                    if (!item.IsALive)
+                    {
+
+                        <tr>
+                            @if (ShowId == true)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TamagotchiId)
+                                </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsALive)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Money)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Level)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Health)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Boredom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HotelBooking.HotelRoom.HotelRoomName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PlayerUser.PlayerUserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.TamagotchiId }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.TamagotchiId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TamagotchiId })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

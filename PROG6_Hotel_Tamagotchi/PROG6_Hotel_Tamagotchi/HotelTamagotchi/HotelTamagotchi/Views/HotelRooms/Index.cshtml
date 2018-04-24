@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HotelTamagotchi.Models.ViewModel.HotelRoomVM>
+
+@{ 
+    bool ShowId = true;
+}
+
+<div class="row">
+    <div class="box">
+        <h2>Hotel room</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
+    <div class="box">
+        <table class="table">
+            <thead>
+                <tr>
+                    @if (ShowId == true)
+                    {
+                        <th>
+                            @Html.DisplayNameFor(model => model.HotelRoomId)
+                        </th>
+                    }
+                    <th>
+                        @Html.DisplayNameFor(model => model.HotelRoomName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoomSize)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoomType)
+                    </th>
+                    <th>
+                        CRUD
+                    </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                  {
+                    <tr>
+                        @if (ShowId == true)
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HotelRoomId)
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HotelRoomName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoomSize)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RoomType)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.HotelRoomId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.HotelRoomId }) |
+
+                            @if(Model.Count() > 4){
+                                @Html.ActionLink("Delete", "Delete", new { id = item.HotelRoomId })
+                            }
+                   
+                        </td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HotelTamagotchi.Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelBooking">
+          <Key>
+            <PropertyRef Name="HotelRoomId" />
+          </Key>
+          <Property Name="HotelRoomId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="HotelRoomId" />
+          </Key>
+          <Property Name="HotelRoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HotelRoomName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoomSize" Type="int" Nullable="false" />
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoomSize">
+          <Key>
+            <PropertyRef Name="RoomSize" />
+          </Key>
+          <Property Name="RoomSize" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoomType">
+          <Key>
+            <PropertyRef Name="RoomType" />
+          </Key>
+          <Property Name="RoomType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoomTypeCost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlayerUser">
+          <Key>
+            <PropertyRef Name="PlayerUserId" />
+          </Key>
+          <Property Name="PlayerUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlayerUserRoll" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tamagotchi">
+          <Key>
+            <PropertyRef Name="TamagotchiId" />
+          </Key>
+          <Property Name="TamagotchiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsALive" Type="bit" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Money" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Health" Type="int" Nullable="false" />
+          <Property Name="Boredom" Type="int" Nullable="false" />
+          <Property Name="PlayerUserId" Type="int" Nullable="false" />
+          <Property Name="HotelRoomId" Type="int" />
+        </EntityType>
+        <Association Name="FK_HotelBooking_HotelRoom">
+          <End Role="HotelRoom" Type="Self.HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="HotelRoomId" />
+            </Principal>
+            <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_HotelRoomType">
+          <End Role="HotelRoomType" Type="Self.HotelRoomType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelRoom" Type="Self.HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomType">
+              <PropertyRef Name="RoomType" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="RoomType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_NumberOfBeds">
+          <End Role="HotelRoomSize" Type="Self.HotelRoomSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HotelRoom" Type="Self.HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomSize">
+              <PropertyRef Name="RoomSize" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="RoomSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tamagotchi_HotelBooking">
+          <End Role="HotelBooking" Type="Self.HotelBooking" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tamagotchi" Type="Self.Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelBooking">
+              <PropertyRef Name="HotelRoomId" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tamagotchi_PlayerUser">
+          <End Role="PlayerUser" Type="Self.PlayerUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tamagotchi" Type="Self.Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerUser">
+              <PropertyRef Name="PlayerUserId" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="PlayerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelTamagotchiDomainStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelBooking" EntityType="Self.HotelBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelRoom" EntityType="Self.HotelRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelRoomSize" EntityType="Self.HotelRoomSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HotelRoomType" EntityType="Self.HotelRoomType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerUser" EntityType="Self.PlayerUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tamagotchi" EntityType="Self.Tamagotchi" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HotelBooking_HotelRoom" Association="Self.FK_HotelBooking_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+            <End Role="HotelBooking" EntitySet="HotelBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_HotelRoomType" Association="Self.FK_HotelRoom_HotelRoomType">
+            <End Role="HotelRoomType" EntitySet="HotelRoomType" />
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_NumberOfBeds" Association="Self.FK_HotelRoom_NumberOfBeds">
+            <End Role="HotelRoomSize" EntitySet="HotelRoomSize" />
+            <End Role="HotelRoom" EntitySet="HotelRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tamagotchi_HotelBooking" Association="Self.FK_Tamagotchi_HotelBooking">
+            <End Role="HotelBooking" EntitySet="HotelBooking" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tamagotchi_PlayerUser" Association="Self.FK_Tamagotchi_PlayerUser">
+            <End Role="PlayerUser" EntitySet="PlayerUser" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelTamagotchi.Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HotelTamagotchiDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="HotelTamagotchi.Domain.C__RefactorLog" />
+          <EntitySet Name="HotelBookings" EntityType="HotelTamagotchi.Domain.HotelBooking" />
+          <EntitySet Name="HotelRooms" EntityType="HotelTamagotchi.Domain.HotelRoom" />
+          <EntitySet Name="HotelRoomSizes" EntityType="HotelTamagotchi.Domain.HotelRoomSize" />
+          <EntitySet Name="HotelRoomTypes" EntityType="HotelTamagotchi.Domain.HotelRoomType" />
+          <EntitySet Name="PlayerUsers" EntityType="HotelTamagotchi.Domain.PlayerUser" />
+          <EntitySet Name="Tamagotchis" EntityType="HotelTamagotchi.Domain.Tamagotchi" />
+          <AssociationSet Name="FK_HotelBooking_HotelRoom" Association="HotelTamagotchi.Domain.FK_HotelBooking_HotelRoom">
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+            <End Role="HotelBooking" EntitySet="HotelBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tamagotchi_HotelBooking" Association="HotelTamagotchi.Domain.FK_Tamagotchi_HotelBooking">
+            <End Role="HotelBooking" EntitySet="HotelBookings" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_HotelRoomType" Association="HotelTamagotchi.Domain.FK_HotelRoom_HotelRoomType">
+            <End Role="HotelRoomType" EntitySet="HotelRoomTypes" />
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoom_NumberOfBeds" Association="HotelTamagotchi.Domain.FK_HotelRoom_NumberOfBeds">
+            <End Role="HotelRoomSize" EntitySet="HotelRoomSizes" />
+            <End Role="HotelRoom" EntitySet="HotelRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tamagotchi_PlayerUser" Association="HotelTamagotchi.Domain.FK_Tamagotchi_PlayerUser">
+            <End Role="PlayerUser" EntitySet="PlayerUsers" />
+            <End Role="Tamagotchi" EntitySet="Tamagotchis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelBooking">
+          <Key>
+            <PropertyRef Name="HotelRoomId" />
+          </Key>
+          <Property Name="HotelRoomId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HotelRoom" Relationship="HotelTamagotchi.Domain.FK_HotelBooking_HotelRoom" FromRole="HotelBooking" ToRole="HotelRoom" />
+          <NavigationProperty Name="Tamagotchis" Relationship="HotelTamagotchi.Domain.FK_Tamagotchi_HotelBooking" FromRole="HotelBooking" ToRole="Tamagotchi" />
+        </EntityType>
+        <EntityType Name="HotelRoom">
+          <Key>
+            <PropertyRef Name="HotelRoomId" />
+          </Key>
+          <Property Name="HotelRoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelRoomName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoomSize" Type="Int32" Nullable="false" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HotelBooking" Relationship="HotelTamagotchi.Domain.FK_HotelBooking_HotelRoom" FromRole="HotelRoom" ToRole="HotelBooking" />
+          <NavigationProperty Name="HotelRoomType" Relationship="HotelTamagotchi.Domain.FK_HotelRoom_HotelRoomType" FromRole="HotelRoom" ToRole="HotelRoomType" />
+          <NavigationProperty Name="HotelRoomSize" Relationship="HotelTamagotchi.Domain.FK_HotelRoom_NumberOfBeds" FromRole="HotelRoom" ToRole="HotelRoomSize" />
+        </EntityType>
+        <EntityType Name="HotelRoomSize">
+          <Key>
+            <PropertyRef Name="RoomSize" />
+          </Key>
+          <Property Name="RoomSize" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HotelRooms" Relationship="HotelTamagotchi.Domain.FK_HotelRoom_NumberOfBeds" FromRole="HotelRoomSize" ToRole="HotelRoom" />
+        </EntityType>
+        <EntityType Name="HotelRoomType">
+          <Key>
+            <PropertyRef Name="RoomType" />
+          </Key>
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HotelRooms" Relationship="HotelTamagotchi.Domain.FK_HotelRoom_HotelRoomType" FromRole="HotelRoomType" ToRole="HotelRoom" />
+          <Property Name="RoomTypeCost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlayerUser">
+          <Key>
+            <PropertyRef Name="PlayerUserId" />
+          </Key>
+          <Property Name="PlayerUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerUserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PlayerUserRoll" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tamagotchis" Relationship="HotelTamagotchi.Domain.FK_Tamagotchi_PlayerUser" FromRole="PlayerUser" ToRole="Tamagotchi" />
+        </EntityType>
+        <EntityType Name="Tamagotchi">
+          <Key>
+            <PropertyRef Name="TamagotchiId" />
+          </Key>
+          <Property Name="TamagotchiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsALive" Type="Boolean" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Money" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Health" Type="Int32" Nullable="false" />
+          <Property Name="Boredom" Type="Int32" Nullable="false" />
+          <Property Name="PlayerUserId" Type="Int32" Nullable="false" />
+          <Property Name="HotelRoomId" Type="Int32" />
+          <NavigationProperty Name="HotelBooking" Relationship="HotelTamagotchi.Domain.FK_Tamagotchi_HotelBooking" FromRole="Tamagotchi" ToRole="HotelBooking" />
+          <NavigationProperty Name="PlayerUser" Relationship="HotelTamagotchi.Domain.FK_Tamagotchi_PlayerUser" FromRole="Tamagotchi" ToRole="PlayerUser" />
+        </EntityType>
+        <Association Name="FK_HotelBooking_HotelRoom">
+          <End Type="HotelTamagotchi.Domain.HotelRoom" Role="HotelRoom" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HotelTamagotchi.Domain.HotelBooking" Role="HotelBooking" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoom">
+              <PropertyRef Name="HotelRoomId" />
+            </Principal>
+            <Dependent Role="HotelBooking">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tamagotchi_HotelBooking">
+          <End Type="HotelTamagotchi.Domain.HotelBooking" Role="HotelBooking" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HotelTamagotchi.Domain.Tamagotchi" Role="Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelBooking">
+              <PropertyRef Name="HotelRoomId" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="HotelRoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_HotelRoomType">
+          <End Type="HotelTamagotchi.Domain.HotelRoomType" Role="HotelRoomType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HotelTamagotchi.Domain.HotelRoom" Role="HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomType">
+              <PropertyRef Name="RoomType" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="RoomType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoom_NumberOfBeds">
+          <End Type="HotelTamagotchi.Domain.HotelRoomSize" Role="HotelRoomSize" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HotelTamagotchi.Domain.HotelRoom" Role="HotelRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomSize">
+              <PropertyRef Name="RoomSize" />
+            </Principal>
+            <Dependent Role="HotelRoom">
+              <PropertyRef Name="RoomSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tamagotchi_PlayerUser">
+          <End Type="HotelTamagotchi.Domain.PlayerUser" Role="PlayerUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HotelTamagotchi.Domain.Tamagotchi" Role="Tamagotchi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlayerUser">
+              <PropertyRef Name="PlayerUserId" />
+            </Principal>
+            <Dependent Role="Tamagotchi">
+              <PropertyRef Name="PlayerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelTamagotchiDomainStoreContainer" CdmEntityContainer="HotelTamagotchiDBEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelBookings">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.HotelBooking">
+              <MappingFragment StoreEntitySet="HotelBooking">
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelRooms">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.HotelRoom">
+              <MappingFragment StoreEntitySet="HotelRoom">
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+                <ScalarProperty Name="RoomSize" ColumnName="RoomSize" />
+                <ScalarProperty Name="HotelRoomName" ColumnName="HotelRoomName" />
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelRoomSizes">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.HotelRoomSize">
+              <MappingFragment StoreEntitySet="HotelRoomSize">
+                <ScalarProperty Name="RoomSize" ColumnName="RoomSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HotelRoomTypes">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.HotelRoomType">
+              <MappingFragment StoreEntitySet="HotelRoomType">
+                <ScalarProperty Name="RoomTypeCost" ColumnName="RoomTypeCost" />
+                <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerUsers">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.PlayerUser">
+              <MappingFragment StoreEntitySet="PlayerUser">
+                <ScalarProperty Name="PlayerUserRoll" ColumnName="PlayerUserRoll" />
+                <ScalarProperty Name="PlayerUserName" ColumnName="PlayerUserName" />
+                <ScalarProperty Name="PlayerUserId" ColumnName="PlayerUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tamagotchis">
+            <EntityTypeMapping TypeName="HotelTamagotchi.Domain.Tamagotchi">
+              <MappingFragment StoreEntitySet="Tamagotchi">
+                <ScalarProperty Name="HotelRoomId" ColumnName="HotelRoomId" />
+                <ScalarProperty Name="PlayerUserId" ColumnName="PlayerUserId" />
+                <ScalarProperty Name="Boredom" ColumnName="Boredom" />
+                <ScalarProperty Name="Health" ColumnName="Health" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="IsALive" ColumnName="IsALive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TamagotchiId" ColumnName="TamagotchiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+﻿@model HotelTamagotchi.Models.ViewModel.HotelRoomVM
+
+
+<div class="row">
+    <div class="box">
+        <h2>Hotel room - Details</h2>
+    </div>
+    <div class="box">
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.HotelRoomName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HotelRoomName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomSize)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomSize)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+
+            </dl>
+        </div>
+        
+        <hr />
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.HotelRoomId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = Model.HotelRoomId })   |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelTamagotchi.Domain", "HotelTamagotchi.Domain\HotelTamagotchi.Domain.csproj", "{ECEC103E-68BE-4588-ABD6-EA827370BE8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelTamagotchi.Service", "HotelTamagotchi.Service\HotelTamagotchi.Service.csproj", "{2BE95A89-0F38-4544-9489-F61877393C69}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HotelTamagotchi.Database", "HotelTamagotchi.Database\HotelTamagotchi.Database.sqlproj", "{3270780D-AB63-4320-9ACE-48065B62C1DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelTamagotchi", "HotelTamagotchi\HotelTamagotchi.csproj", "{2E1077D7-9976-40D6-B093-F01A69C47843}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra", "Extra", "{B87C453C-7922-495D-8D89-5A2CAF96D8C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelTamagotchi.Tests", "HotelTamagotchi.Tests\HotelTamagotchi.Tests.csproj", "{BEBB28F2-D40A-4FF5-AA1D-BEB30DE054F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECEC103E-68BE-4588-ABD6-EA827370BE8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEC103E-68BE-4588-ABD6-EA827370BE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEC103E-68BE-4588-ABD6-EA827370BE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEC103E-68BE-4588-ABD6-EA827370BE8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE95A89-0F38-4544-9489-F61877393C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE95A89-0F38-4544-9489-F61877393C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE95A89-0F38-4544-9489-F61877393C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE95A89-0F38-4544-9489-F61877393C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3270780D-AB63-4320-9ACE-48065B62C1DB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2E1077D7-9976-40D6-B093-F01A69C47843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1077D7-9976-40D6-B093-F01A69C47843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1077D7-9976-40D6-B093-F01A69C47843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1077D7-9976-40D6-B093-F01A69C47843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBB28F2-D40A-4FF5-AA1D-BEB30DE054F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBB28F2-D40A-4FF5-AA1D-BEB30DE054F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBB28F2-D40A-4FF5-AA1D-BEB30DE054F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBB28F2-D40A-4FF5-AA1D-BEB30DE054F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2BE95A89-0F38-4544-9489-F61877393C69} = {B87C453C-7922-495D-8D89-5A2CAF96D8C3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F506A4C3-DA6A-4421-B65D-8987B34FE3A2}
+	EndGlobalSection
+EndGlobal

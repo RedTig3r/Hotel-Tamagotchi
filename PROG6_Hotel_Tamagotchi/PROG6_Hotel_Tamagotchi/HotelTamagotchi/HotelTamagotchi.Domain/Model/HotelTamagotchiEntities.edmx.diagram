@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="de8e0c7ce3554e448adea7f947937909" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.C__RefactorLog" Width="1.5" PointX="7.375" PointY="1.5" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.HotelBooking" Width="1.5" PointX="4.875" PointY="4.25" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.HotelRoom" Width="1.5" PointX="2.5" PointY="3.5" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.HotelRoomSize" Width="1.5" PointX="1.25" PointY="1.375" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.HotelRoomType" Width="1.5" PointX="4" PointY="1.375" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.PlayerUser" Width="1.5" PointX="9.625" PointY="4.25" />
+        <EntityTypeShape EntityType="HotelTamagotchi.Domain.Tamagotchi" Width="1.5" PointX="7.375" PointY="3.75" />
+        <AssociationConnector Association="HotelTamagotchi.Domain.FK_HotelBooking_HotelRoom" />
+        <AssociationConnector Association="HotelTamagotchi.Domain.FK_Tamagotchi_HotelBooking" />
+        <AssociationConnector Association="HotelTamagotchi.Domain.FK_HotelRoom_HotelRoomType" />
+        <AssociationConnector Association="HotelTamagotchi.Domain.FK_HotelRoom_NumberOfBeds" />
+        <AssociationConnector Association="HotelTamagotchi.Domain.FK_Tamagotchi_PlayerUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
